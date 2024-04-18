@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Factorial</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Calculadora de Factorial</h1>
+        <form id="factorialForm">
+            <input type="number" id="numberInput" placeholder="Ingrese un número" min="0" required>
+            <button type="submit">Calcular Factorial</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        // Función para calcular el factorial
+        function calcularFactorial(n) {
+            let resultado = 1;
+            for (let i = 1; i <= n; i++) {
+                resultado *= i;
+            }
+            return resultado;
+        }
+
+        // Función que maneja el evento de enviar el formulario
+        function manejarEnvio(evento) {
+            evento.preventDefault(); // Evita que el formulario se envíe y recargue la página
+
+            // Obtiene el valor del input
+            const numero = parseInt(document.getElementById('numberInput').value);
+
+            // Calcula el factorial
+            const resultado = calcularFactorial(numero);
+
+            // Muestra el resultado
+            document.getElementById('result').innerText = `El factorial de ${numero} es ${resultado}`;
+        }
+
+        // Añade un evento de escucha al formulario para manejar el envío
+        document.getElementById('factorialForm').addEventListener('submit', manejarEnvio);
+    </script>
+</body>
+
+</html>

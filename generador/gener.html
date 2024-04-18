@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de Números</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 50%;
+            margin-bottom: 10px;
+        }
+
+        #numerosGenerados {
+            margin-bottom: 20px;
+            text-align: left;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        #resultado {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Generador de Números</h1>
+        <button onclick="generarNumeros()">Generar Números</button>
+        <h2>Números Generados:</h2>
+        <div id="numerosGenerados"></div>
+        <h1>Validador de Números</h1>
+        <input type="text" id="inputNumero" placeholder="Ingrese un número de 4 dígitos">
+        <button onclick="validarNumero()">Validar Número</button>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        let numerosGenerados = [];
+
+        function generarNumeros() {
+            numerosGenerados = [];
+            for (let i = 0; i < 40; i++) {
+                let numero = Math.floor(Math.random() * 10000);
+                numerosGenerados.push(numero);
+            }
+            mostrarNumeros();
+        }
+
+        function mostrarNumeros() {
+            const numerosGeneradosDiv = document.getElementById('numerosGenerados');
+            numerosGeneradosDiv.innerHTML = '';
+            numerosGenerados.forEach(numero => {
+                const p = document.createElement('p');
+                p.textContent = numero.toString().padStart(4, '0');
+                numerosGeneradosDiv.appendChild(p);
+            });
+        }
+
+        function validarNumero() {
+            const inputNumero = document.getElementById('inputNumero').value;
+            if (!inputNumero || inputNumero.length !== 4 || isNaN(inputNumero)) {
+                document.getElementById('resultado').textContent = 'Ingrese un número de 4 dígitos válido.';
+                return;
+            }
+            const numero = parseInt(inputNumero);
+            if (numerosGenerados.includes(numero)) {
+                document.getElementById('resultado').textContent = `El número ${numero.toString().padStart(4, '0')} es válido.`;
+            } else {
+                document.getElementById('resultado').textContent = `El número ${numero.toString().padStart(4, '0')} no es válido.`;
+            }
+        }
+    </script>
+</body>
+
+</html>
