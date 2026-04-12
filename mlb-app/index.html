@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MLB Teams Explorer</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo-mark">⚾</div>
+      <div>
+        <h1>MLB <span>Teams</span></h1>
+        <p class="subtitle">MAJOR LEAGUE BASEBALL · EXPLORER</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="search-bar">
+      <input type="text" id="searchInput" placeholder="🔍  Buscar equipo..." oninput="filterTeams()"/>
+    </section>
+
+    <section class="divisions" id="divisionsContainer"></section>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+      <div class="modal" id="modal" onclick="event.stopPropagation()">
+        <button class="close-btn" onclick="closeModal()">✕</button>
+
+        <!-- TOP: logo + info -->
+        <div class="modal-top">
+          <div class="modal-logo">
+            <img id="modalLogo" src="" alt="Team Logo"/>
+          </div>
+          <div class="modal-info">
+            <p class="modal-division" id="modalDivision"></p>
+            <h2 id="modalName"></h2>
+            <div class="modal-stats">
+              <div class="stat">
+                <span class="stat-label">Ciudad</span>
+                <span class="stat-value" id="modalCity"></span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Estadio</span>
+                <span class="stat-value" id="modalStadium"></span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Fundado</span>
+                <span class="stat-value" id="modalFounded"></span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Campeonatos WS</span>
+                <span class="stat-value" id="modalTitles"></span>
+              </div>
+            </div>
+            <p class="modal-desc" id="modalDesc"></p>
+          </div>
+        </div>
+
+        <!-- BOTTOM: map -->
+        <div class="modal-map-section">
+          <div class="map-header">
+            <span class="map-label">📍 Ubicación del Estadio</span>
+            <a id="mapLink" href="#" target="_blank" rel="noopener" class="map-open-btn">Ver en mapa completo ↗</a>
+          </div>
+          <iframe
+            id="modalMap"
+            src=""
+            width="100%"
+            height="220"
+            style="border:0; border-radius:10px; display:block;"
+            loading="lazy"
+            allowfullscreen
+            title="Mapa del estadio">
+          </iframe>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>⚾ MLB Teams Explorer &nbsp;·&nbsp; Práctica Render Deployment</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
